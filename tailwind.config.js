@@ -19,6 +19,18 @@ module.exports = {
         "800": "#240273",
         "900": "#140141",
       },
+      pink: {
+        default: "#E100FF",
+        "100": "#F9CCFF",
+        "200": "#F399FF",
+        "300": "#ED66FF",
+        "400": "#E733FF",
+        "500": "#E100FF",
+        "600": "#B400CC",
+        "700": "#870099",
+        "800": "#5A0066",
+        "900": "#2D0033",
+      },
       candlelight: {
         default: "#FACC14",
         "100": "#FEF7DC",
@@ -95,7 +107,12 @@ module.exports = {
       white: "#FFFFFF",
       transparent: "#00000000",
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        roboto: "Roboto, sans-serif",
+        montserrat: "Montserrat, sans-serif",
+      },
+    },
   },
   variants: {
     extend: {},

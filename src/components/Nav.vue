@@ -1,12 +1,10 @@
 <template>
-  <nav
-    class="h-16 shadow-default bg-electric-violet-300 dark:bg-electric-violet-500"
-  >
+  <nav class="h-16 shadow-default bg-candlelight-500 text-black">
     <div
       class="flex flex-row items-center justify-between h-full w-11/12 mx-auto"
     >
       <div class="flex items-center justify-center h-full">
-        PowerSpike Todos
+        PowerSpike
       </div>
       <div class="flex items-center justify-center h-full">
         <button
@@ -23,7 +21,6 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { mapState } from "vuex";
 
 export default Vue.extend({
   methods: {
@@ -36,7 +33,9 @@ export default Vue.extend({
     },
   },
   computed: {
-    ...mapState(["isDarkMode"]),
+    isDarkMode() {
+      return this.$store.state.isDarkMode;
+    },
   },
   mounted() {
     this.$store.dispatch("init");
