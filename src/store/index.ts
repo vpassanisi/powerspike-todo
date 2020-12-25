@@ -4,25 +4,32 @@ import { GetterTree, ActionTree, MutationTree } from "vuex";
 
 Vue.use(Vuex);
 
-export interface Todo {
+export type Todo = {
   id: string;
   title: string;
   content: string;
   created: number;
   last_edited: number;
-}
+};
 
-const state = () => ({
+export type RootState = {
+  isDarkMode: boolean;
+  isNewTodoOpen: boolean;
+  todos: Todo[];
+};
+
+const state = (): RootState => ({
   isDarkMode: window.matchMedia("(prefers-color-scheme: dark)").matches,
+  isNewTodoOpen: false,
   todos: [] as Todo[],
 });
-
-type RootState = ReturnType<typeof state>;
 
 const mutations: MutationTree<RootState> = {
   setOn: (state) => (state.isDarkMode = true),
   setOff: (state) => (state.isDarkMode = false),
   setTodos: (state, json: Todo[]) => (state.todos = json),
+  openNewTodo: (state) => (state.isNewTodoOpen = true),
+  closeNewTodo: (state) => (state.isNewTodoOpen = false),
 };
 
 const actions: ActionTree<RootState, RootState> = {

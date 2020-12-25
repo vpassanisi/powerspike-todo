@@ -1,6 +1,7 @@
 <template>
   <transition name="todolist" appear>
     <div class="flex flex-col items-center justify-center pt-24">
+      <!-- Todo List Card -->
       <div class="w-11/12 max-w-screen-sm">
         <Header />
         <div
@@ -12,6 +13,7 @@
             :todo="todo"
             :index="i"
           />
+          <NewTodo />
         </div>
       </div>
     </div>
@@ -22,6 +24,7 @@
 import Vue from "vue";
 import Header from "./Header.vue";
 import TodoComp from "./TodoComp.vue";
+import NewTodo from "./NewTodo.vue";
 
 import { Todo } from "../store/index";
 
@@ -29,6 +32,7 @@ export default Vue.extend({
   components: {
     Header,
     TodoComp,
+    NewTodo,
   },
   computed: {
     todos(): Todo[] {
