@@ -20,9 +20,9 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 
-export default Vue.extend({
+export default defineComponent({
   methods: {
     handleToggleDarkMode() {
       if (this.isDarkMode) {
@@ -33,7 +33,7 @@ export default Vue.extend({
     },
   },
   computed: {
-    isDarkMode() {
+    isDarkMode(): boolean {
       return this.$store.state.isDarkMode;
     },
   },

@@ -1,12 +1,10 @@
 <template>
   <transition name="todolist" appear>
-    <div class="flex flex-col items-center justify-center pt-24">
+    <div class="flex flex-col items-center justify-center pt-16">
       <!-- Todo List Card -->
-      <div class="w-11/12 max-w-screen-sm">
+      <div class="w-11/12 max-w-screen-sm rounded shadow-lg dark:shadow-none">
         <Header />
-        <div
-          class="rounded-b border-l border-r border-b border-gray-500 dark:border-gray-700"
-        >
+        <div class="relative">
           <TodoComp
             v-for="(todo, i) in todos"
             :key="todo.id"
@@ -14,6 +12,17 @@
             :index="i"
           />
           <NewTodo />
+          <button
+            @click="isNewTodoOpen ? closeNewTodo() : openNewTodo()"
+            class="absolute right-0 rounded-full bg-candlelight-400 dark:bg-candlelight-500 focus:outline-none transform -translate-y-7 text-black p-2"
+          >
+            <i
+              class="flex material-icons transition-transform duration-500 ease-in-expo"
+              style="font-size: 2.25rem"
+              :class="[isNewTodoOpen ? 'transform rotate-45' : '']"
+              >add</i
+            >
+          </button>
         </div>
       </div>
     </div>
@@ -21,14 +30,14 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import { defineComponent } from "vue";
 import Header from "./Header.vue";
 import TodoComp from "./TodoComp.vue";
 import NewTodo from "./NewTodo.vue";
 
 import { Todo } from "../store/index";
 
-export default Vue.extend({
+export default defineComponent({
   components: {
     Header,
     TodoComp,
@@ -38,6 +47,17 @@ export default Vue.extend({
     todos(): Todo[] {
       return this.$store.state.todos;
     },
+    isNewTodoOpen(): boolean {
+      return this.$store.state.isNewTodoOpen;
+    },
+  },
+  methods: {
+    openNewTodo(): void {
+      this.$store.commit("openNewTodo");
+    },
+    closeNewTodo(): void {
+      this.$store.commit("closeNewTodo");
+    },
   },
   created(): void {
     this.$store.dispatch("getTodos");
@@ -46,8 +66,8 @@ export default Vue.extend({
 </script>
 
 <style scoped>
-.todolist-enter,
-.todolist-leave-active {
+.todolist-enter-from,
+.todolist-leave-to {
   opacity: 0;
   transform: translateY(10%);
 }

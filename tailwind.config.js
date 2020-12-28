@@ -2,10 +2,6 @@ module.exports = {
   purge: ["./public/index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   darkMode: "class", // or 'media' or 'class'
   theme: {
-    boxShadow: {
-      default:
-        "0px 3px 9px 2px rgba(0, 0, 0, 0.1), 0px 3px 3px 2px rgba(0, 0, 0, 0.08)",
-    },
     colors: {
       "electric-violet": {
         default: "#5914FA",
@@ -108,14 +104,30 @@ module.exports = {
       transparent: "#00000000",
     },
     extend: {
+      boxShadow: {
+        default:
+          "0px 3px 9px 2px rgba(0, 0, 0, 0.1), 0px 3px 3px 2px rgba(0, 0, 0, 0.08)",
+      },
       fontFamily: {
         roboto: "Roboto, sans-serif",
         montserrat: "Montserrat, sans-serif",
       },
+      transitionProperty: {
+        height: "height",
+        "max-height": "max-height",
+        "border-color": "border-color",
+        "background-color": "background-color",
+        drawer: "background-color, transform",
+      },
+      transitionTimingFunction: {
+        "in-expo": "cubic-bezier(0.075, 0.245, 0, 0.93)",
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      boxShadow: ["dark"],
+    },
   },
   plugins: [],
 };
