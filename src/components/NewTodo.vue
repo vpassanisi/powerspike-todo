@@ -1,8 +1,9 @@
 <template>
   <div
-    class="relative flex flex-col items-start justify-center border-t border-gray-600 overflow-hidden transition-max-height duration-500 ease-in-expo"
-    :class="[isNewTodoOpen ? 'max-h-48 border-b' : 'max-h-0']"
+    class="relative flex flex-col items-start justify-center border-t rounded-b border-gray-600 overflow-hidden transition-updateTodo duration-500 ease-in-expo"
+    :class="[isNewTodoOpen ? 'max-h-52 border-b ' : 'max-h-0']"
   >
+    <div class="text-center mt-2 text-2xl w-full">New Todo</div>
     <input
       class="bg-transparent border-b-2 font-black text-xl border-electric-violet-400 focus:border-candlelight-500 transition-border-color duration-500 ease-out w-3/4 ml-4 mb-2 mt-4"
       type="text"
@@ -55,6 +56,11 @@ export default defineComponent({
         title: this.title,
         content: this.content,
       });
+
+      this.$store.commit("closeNewTodo");
+
+      this.title = "";
+      this.content = "";
     },
   },
 });
