@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
 import { GetterTree, ActionTree, MutationTree } from "vuex";
 
+// reuseable check for successful fetch
 async function handleResponse(res: Response): Promise<void> {
   if (!res.ok) {
     throw new Error(await res.text());
   }
 }
 
+// types for the store
 export type Todo = {
   id: string;
   title: string;
@@ -22,8 +24,12 @@ type NewTodo = {
 
 type UpdateObj = {
   id: string;
-  index: number;
   updatedTodo: NewTodo;
+};
+
+type DeleteObj = {
+  id: string;
+  index: number;
 };
 
 const state = () => ({
@@ -34,20 +40,16 @@ const state = () => ({
   error: null as null | string,
 });
 
+// easy type definition for the state object.  This way I don't have to maintain a separate type definition
 export type RootState = ReturnType<typeof state>;
 
 const mutations: MutationTree<RootState> = {
   setOn: (state) => (state.isDarkMode = true),
   setOff: (state) => (state.isDarkMode = false),
   setTodos: (state, json: Todo[]) => (state.todos = json),
-  addTodo: (state, todo: Todo) => state.todos.push(todo),
   openNewTodo: (state) => (state.isNewTodoOpen = true),
   closeNewTodo: (state) => (state.isNewTodoOpen = false),
   deleteTodo: (state, index) => state.todos.splice(index, 1),
-  updateTodo: (state, updateObj: UpdateObj) => {
-    state.todos[updateObj.index].title = updateObj.updatedTodo.title;
-    state.todos[updateObj.index].content = updateObj.updatedTodo.content;
-  },
   setError: (state, error: string) => (state.error = error),
   clearError: (state) => (state.error = null),
   startLoading: (state) => (state.isLoading = true),
@@ -89,11 +91,12 @@ const actions: ActionTree<RootState, RootState> = {
       commit("endLoading");
     }
   },
-  async addTodo({ commit }, todo: NewTodo) {
+  async addTodo({ commit, dispatch }, todo: NewTodo) {
     try {
       commit("startLoading");
 
-      if (todo.title === "" || todo.content === "") {
+      // no empty strings allowed
+      if (!todo.title || !todo.content) {
         throw new Error("A todo must have a title and content");
       }
 
@@ -107,13 +110,8 @@ const actions: ActionTree<RootState, RootState> = {
 
       await handleResponse(res);
 
-      /* eslint-disable @typescript-eslint/camelcase */
-      commit("addTodo", {
-        ...todo,
-        id: Date.now().toString(),
-        created: 0,
-        last_edited: 0,
-      });
+      // I have to pull all the todos to get the id of the newly created todo
+      dispatch("getTodos");
     } catch (error) {
       commit("setError", error.message);
       console.log(error.message);
@@ -121,25 +119,21 @@ const actions: ActionTree<RootState, RootState> = {
       commit("endLoading");
     }
   },
-  async deleteTodo({ commit, state }, id: string) {
+  async deleteTodo({ commit }, deleteObj: DeleteObj) {
     try {
       commit("startLoading");
 
-      let index: number | undefined;
-      state.todos.forEach((t, i) => {
-        if (t.id === id) index = i;
-      });
-
-      if (!index) throw new Error("could not find that todo :(");
-
-      const res: Response = await fetch(`https://todo.powerspike.gg/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: "AC25A5AC" },
-      });
+      const res: Response = await fetch(
+        `https://todo.powerspike.gg/${deleteObj.id}`,
+        {
+          method: "DELETE",
+          headers: { Authorization: "AC25A5AC" },
+        }
+      );
 
       await handleResponse(res);
 
-      commit("deleteTodo", index);
+      commit("deleteTodo", deleteObj.index);
     } catch (error) {
       commit("setError", error.message);
       console.log(error.message);
@@ -151,10 +145,8 @@ const actions: ActionTree<RootState, RootState> = {
     try {
       commit("startLoading");
 
-      if (
-        updateObj.updatedTodo.title === "" ||
-        updateObj.updatedTodo.content === ""
-      ) {
+      // no empty strings allowed
+      if (!updateObj.updatedTodo.title || !updateObj.updatedTodo.content) {
         throw new Error("A todo must have a title and content");
       }
 
@@ -169,7 +161,10 @@ const actions: ActionTree<RootState, RootState> = {
 
       await handleResponse(res);
 
-      commit("updateTodo", updateObj);
+      const json: Todo[] = await res.json();
+
+      // this endpoint returns all of the todos, so I just set all of them
+      commit("setTodos", json);
     } catch (error) {
       commit("setError", error.message);
       console.log(error.message);

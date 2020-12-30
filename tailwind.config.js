@@ -53,8 +53,8 @@ module.exports = {
       },
       gray: {
         default: "#B3B3B3",
-        "100": "#FFFFFF",
-        "200": "#FFFFFF",
+        "100": "#FAFAFA",
+        "200": "#F0F0F0",
         "300": "#E6E6E6",
         "400": "#CCCCCC",
         "500": "#B3B3B3",
@@ -119,6 +119,7 @@ module.exports = {
         "background-color": "background-color",
         drawer: "background-color, transform",
         updateTodo: "border-color, max-height",
+        "text-color": "color",
       },
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.075, 0.245, 0, 0.93)",

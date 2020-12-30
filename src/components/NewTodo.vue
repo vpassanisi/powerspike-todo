@@ -1,7 +1,7 @@
 <template>
   <div
-    class="relative flex flex-col items-start justify-center border-t rounded-b border-gray-600 overflow-hidden transition-updateTodo duration-500 ease-in-expo"
-    :class="[isNewTodoOpen ? 'max-h-52 border-b ' : 'max-h-0']"
+    class="relative flex flex-col items-start justify-center border-gray-600 overflow-hidden transition-updateTodo duration-500 ease-in-expo"
+    :class="[isNewTodoOpen ? 'max-h-52 border-b' : 'max-h-0']"
   >
     <div class="text-center mt-2 text-2xl w-full">New Todo</div>
     <input

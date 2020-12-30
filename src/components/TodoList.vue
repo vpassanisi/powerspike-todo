@@ -1,37 +1,37 @@
 <template>
-  <transition name="todolist" appear>
-    <div class="flex flex-col items-center justify-center pt-16">
-      <!-- Todo List Card -->
+  <div class="flex flex-col items-center justify-center pt-16">
+    <!-- Todo List Card -->
+    <transition name="todolist" appear>
       <div
-        class="w-11/12 max-w-screen-sm rounded shadow-lg dark:shadow-none mb-32"
+        class="relative w-11/12 max-w-screen-sm rounded mb-64 transition-transform duration-500 ease-in-expo"
       >
-        <Header />
-        <div class="relative">
-          <transition-group name="todos" tag="div">
-            <TodoComp
-              v-for="(todo, i) in todos"
-              :key="todo.id"
-              :todo="todo"
-              :index="i"
-            />
-            <NewTodo key="NewTodo" />
-            <button
-              key="NewTodo-button"
-              @click="isNewTodoOpen ? closeNewTodo() : openNewTodo()"
-              class="absolute right-0 rounded-full bg-candlelight-400 dark:bg-candlelight-500 focus:outline-none transform -translate-y-7 text-black p-2"
+        <Header key="header" />
+
+        <!-- Todo List -->
+        <transition-group name="todos">
+          <TodoComp
+            v-for="(todo, i) in todos"
+            :key="todo.id"
+            :todo="todo"
+            :index="i"
+          />
+          <NewTodo key="NewTodo" />
+          <button
+            key="NewTodo-button"
+            @click="isNewTodoOpen ? closeNewTodo() : openNewTodo()"
+            class="absolute right-0 rounded-full bg-candlelight-400 dark:bg-candlelight-500 focus:outline-none transform -translate-y-7 text-black p-2 shadow-lg"
+          >
+            <i
+              class="flex material-icons transition-transform duration-500 ease-in-expo"
+              style="font-size: 2.25rem"
+              :class="[isNewTodoOpen ? 'transform rotate-45' : '']"
+              >add</i
             >
-              <i
-                class="flex material-icons transition-transform duration-500 ease-in-expo"
-                style="font-size: 2.25rem"
-                :class="[isNewTodoOpen ? 'transform rotate-45' : '']"
-                >add</i
-              >
-            </button>
-          </transition-group>
-        </div>
+          </button>
+        </transition-group>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </div>
 </template>
 
 <script lang="ts">
@@ -71,6 +71,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/* transition for page load */
 .todolist-enter-from,
 .todolist-leave-to {
   opacity: 0;
@@ -82,14 +83,15 @@ export default defineComponent({
     transform 1s cubic-bezier(0.075, 0.245, 0, 0.93);
 }
 
+/* list animation */
 .todos-enter-active {
-  animation: add-item 0.5s;
+  animation: add-item 0.15s;
 }
 
 .todos-leave-active {
   position: absolute;
   width: 100%;
-  animation: add-item 0.5s reverse;
+  animation: add-item 0.15s reverse;
 }
 
 .todos-move {
