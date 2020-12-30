@@ -86,7 +86,6 @@ const actions: ActionTree<RootState, RootState> = {
       commit("setTodos", json);
     } catch (error) {
       commit("setError", error.message);
-      console.log(error.message);
     } finally {
       commit("endLoading");
     }
@@ -114,7 +113,6 @@ const actions: ActionTree<RootState, RootState> = {
       dispatch("getTodos");
     } catch (error) {
       commit("setError", error.message);
-      console.log(error.message);
     } finally {
       commit("endLoading");
     }
@@ -136,7 +134,6 @@ const actions: ActionTree<RootState, RootState> = {
       commit("deleteTodo", deleteObj.index);
     } catch (error) {
       commit("setError", error.message);
-      console.log(error.message);
     } finally {
       commit("endLoading");
     }
@@ -167,7 +164,6 @@ const actions: ActionTree<RootState, RootState> = {
       commit("setTodos", json);
     } catch (error) {
       commit("setError", error.message);
-      console.log(error.message);
     } finally {
       commit("endLoading");
     }

@@ -86,12 +86,16 @@ export default defineComponent({
 /* list animation */
 .todos-enter-active {
   animation: add-item 0.15s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
 }
 
 .todos-leave-active {
   position: absolute;
   width: 100%;
   animation: add-item 0.15s reverse;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
 }
 
 .todos-move {
@@ -100,9 +104,6 @@ export default defineComponent({
 @keyframes add-item {
   0% {
     opacity: 0;
-  }
-  50% {
-    opacity: 0.5;
   }
   100% {
     opacity: 1;
