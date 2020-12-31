@@ -1,12 +1,12 @@
 <template>
-  <transition name="alert">
-    <div
-      v-if="error"
-      class="fixed bottom-0 flex items-center justify-center w-full h-16 bg-red-700 text-center text-2xl text-white"
-    >
-      {{ error }}
-    </div>
-  </transition>
+  <div
+    class="fixed bottom-0 flex items-center justify-center w-full h-16 bg-red-700 text-center text-2xl text-white transform transition-error duration-700 ease-in-expo"
+    :class="[
+      error ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full',
+    ]"
+  >
+    {{ error }}
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,23 +19,5 @@ export default defineComponent({
       return this.$store.state.error;
     },
   },
-  watch: {
-    error() {
-      setTimeout(() => this.$store.commit("clearError"), 3000);
-    },
-  },
 });
 </script>
-
-<style scoped>
-.alert-enter-from,
-.alert-leave-to {
-  opacity: 0;
-  transform: translateY(100%);
-}
-.alert-enter-active,
-.alert-leave-active {
-  transition: opacity 0.75s cubic-bezier(0.075, 0.245, 0, 0.93),
-    transform 0.75s cubic-bezier(0.075, 0.245, 0, 0.93);
-}
-</style>

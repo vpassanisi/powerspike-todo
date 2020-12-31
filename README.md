@@ -14,9 +14,9 @@ This is a Vue 3 + Vuex 4 app. Vue 3 is still very new, however it works very wel
 
 I made a custom color palette for this app that is completely compliant to the [Material Design color spec](https://material.io/design/color/the-color-system.html#color-usage-and-palettes). The app has a dark mode that can be toggled using the brightness icon in the navbar in the top right. I pulled the main colors from the PowerSpike website to keep the theming consitent :).
 
-The app has a component that handles errors made during fetch requests and gives the user visual feedback when it happens. This typically wont happen but you can see how it works by removing the auth header from a fetch request, or by turning off the wifi on your computer and then trying to make a fetch request.
+The app has a component that handles errors made during fetch requests and gives the user visual feedback when it happens. This typically wont happen but you can see how it works by trying to make a new todo, or updating a todo, with an empty title or content field.
 
-I made a custom easing function for css animations and transitions that are used throughout the app. Hovering your cursor over a todo shows the date and time it was created, and clicking on a todo opens a drawer with buttons for editing the todo and for deleting it. Clicking on the todo again will close the todo. The plus button at the bottom of the list opens a collapse for adding a new todo. The todo list is animated with fades and translations for adding and removing todos. The todo list looks great on desktop and mobile screens and changes padding, margin and layout based on the screen size.
+I made a custom easing function for css animations and transitions that are used throughout the app. Hovering your cursor over a todo shows the date and time it was created, and clicking on a todo opens a drawer with buttons for editing the todo and for deleting it. Clicking on the todo again will close the todo. When a todo has been edited the date and time of the last edit is shown in the edit collapse. The plus button at the bottom of the list opens a collapse for adding a new todo. The todo list is animated with fades and translations for adding and removing todos. The todo list looks great on desktop and mobile screens and changes padding, margin and layout based on the screen size.
 
 ### Project setup
 

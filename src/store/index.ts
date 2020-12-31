@@ -49,9 +49,11 @@ const mutations: MutationTree<RootState> = {
   setTodos: (state, json: Todo[]) => (state.todos = json),
   openNewTodo: (state) => (state.isNewTodoOpen = true),
   closeNewTodo: (state) => (state.isNewTodoOpen = false),
-  deleteTodo: (state, index) => state.todos.splice(index, 1),
-  setError: (state, error: string) => (state.error = error),
-  clearError: (state) => (state.error = null),
+  deleteTodo: (state, index: number) => state.todos.splice(index, 1),
+  setError: (state, error: string) => {
+    state.error = error;
+    setTimeout(() => (state.error = null), 3000);
+  },
   startLoading: (state) => (state.isLoading = true),
   endLoading: (state) => (state.isLoading = false),
 };

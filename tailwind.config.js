@@ -120,6 +120,7 @@ module.exports = {
         drawer: "background-color, transform",
         updateTodo: "border-color, max-height",
         "text-color": "color",
+        error: "opacity, transform",
       },
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.075, 0.245, 0, 0.93)",
