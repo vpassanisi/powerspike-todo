@@ -16,7 +16,7 @@ I made a custom color palette for this app that is completely compliant to the [
 
 The app has a component that handles errors made during fetch requests and gives the user visual feedback when it happens. This typically wont happen but you can see how it works by removing the auth header from a fetch request, or by turning off the wifi on your computer and then trying to make a fetch request.
 
-I made a custom easing function for css animations and transitions that are used throughout the app. Hovering your cursor over a todo shows the date and time it was created, and clicking on a todo opens a drawer with buttons for editing the todo and for deleting it. Clicking on the todo again will close the todo. The plus button at the bottom of the list opens a collapse for adding a new todo. The todo list is animated with fades and translations for adding and removing todos.
+I made a custom easing function for css animations and transitions that are used throughout the app. Hovering your cursor over a todo shows the date and time it was created, and clicking on a todo opens a drawer with buttons for editing the todo and for deleting it. Clicking on the todo again will close the todo. The plus button at the bottom of the list opens a collapse for adding a new todo. The todo list is animated with fades and translations for adding and removing todos. The todo list looks great on desktop and mobile screens and changes pagin, margin and layout based onthe screen size.
 
 ### Project setup
 
