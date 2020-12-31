@@ -6,9 +6,9 @@ This is Vincent Passanisi's submission for the PowerSpike Todo List code prompt.
 
 ### About
 
-This Todo List was made with [Vue 3 CLI](https://cli.vuejs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwindcss 2](https://tailwindcss.com/). I chose to use Tailwindcss simply because it lets me write css faster. There are no pre made components, it just build a style sheet for you so that you can put together the classes that you want. I could easily build this app without it. I love Vue and it has great TypeScript support so it was a natural choice.
+This Todo List was made with [Vue 3 CLI](https://cli.vuejs.org/), [TypeScript](https://www.typescriptlang.org/), and [Tailwindcss 2](https://tailwindcss.com/). I chose to use Tailwindcss simply because it lets me write css faster. There are no pre-made components, it just builds a style sheet for you so that you can put together the classes that you want. I could easily build this app without it. I love Vue and it has great TypeScript support so it was a natural choice.
 
-This is a Vue 3 + Vuex 4 app. Vue 3 is still very new, however it works very well and has only a few breaking changes over Vue 2. There is a new version of the vue dev tools that is required to work with version 3.0+. At the time of writing, the new vue dev tools does not support vuex, but for a simple app like this it wasn't a big problem.
+This is a Vue 3 + Vuex 4 app. Vue 3 is still very new, however it works very well and has only a few breaking changes over version 2. There is a new version of the vue dev tools that is required to work with version 3.0+. At the time of writing, the new vue dev tools does not support vuex, but for a simple app like this it wasn't a big problem.
 
 ### Features
 
